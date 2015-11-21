@@ -1,7 +1,9 @@
 package tools.cyc115.com.speedbutton;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.MediaRouteButton;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = MainActivity.class.getCanonicalName();
+    private static final String USERIDExtra = "userid";
     @ViewById(R.id.user1_btn)
     Button user1;
     @ViewById(R.id.user2_btn)
@@ -63,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
         //TODO replace the result which is the uri "ws:// ..." obtained from the server
         String wsUri = "url of the static REST server";
 
+        /*  commented out for test purpose
         RestTemplate template = new RestTemplate();
         template.getMessageConverters().add(new StringHttpMessageConverter());
         String result = template.getForObject(wsUri, String.class, "Android");
 
+        */
         //TODO App.WS_URI = result;
 
         App.WS_URI = "ws://echo.websocket.org";
@@ -88,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Click({R.id.user2_btn, R.id.user1_btn})
     void userBtnClicked(View view){
-        User currentUser ;
 
         if (view.getId() == R.id.user1_btn){
             App.currentUser= User.USER1;
@@ -97,7 +101,19 @@ public class MainActivity extends AppCompatActivity {
             App.currentUser = User.USER2;
         }
 
-        connectToServer(App.WS_URI);
+        try {
+            connectToServer(App.WS_URI);
+
+        } catch (URISyntaxException e) {
+            Log.e(TAG,"unable to connect to WebSocket");
+            e.printStackTrace();
+        }
+
+        //start the game room activity
+        RoomActivity_
+                .intent(MainActivity.this).extra(USERIDExtra, App.currentUser )
+                .start();
+
     }
 
     //TODO extract this to a service.
@@ -107,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException("uri is null");
         }
 
+        /** commented out for test purpose
         final Socket socket = IO.socket(socketiouri);
 
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
@@ -129,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+         **/
 
 
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true"
+    tools:context="tools.cyc115.com.speedbutton.RoomActivity">
+
+    <ImageView
+        android:layout_width="@dimen/ready_btn_size"
+        android:layout_height="@dimen/ready_btn_size"
+        android:src="@drawable/round_btn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="startGameActivity"/>
+
+    <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="READY"
+        android:id="@+id/infoTV"
+        android:layout_centerVertical="true"
+        android:onClick="startGameActivity"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/ready_btn_text_size"
+        />
+
+</RelativeLayout>
