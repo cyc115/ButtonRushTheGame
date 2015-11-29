@@ -45,19 +45,25 @@ var checkButtons = function(iButtonClicked, socket, iScore) {
   }
 
   if (bValidClick) {
+    // if the click is valid, inform the opponent about the new score
     socket.emit("score_update", {score : iScore});
     console.log("valid click");
   }
   else {
     console.log("invalid click");
-
+    // inform the current player that they lost.
     io.to(currentSocketId).emit("game_result", {result : "lost"});
+
+    // inform the opponent that they win
     if (currentSocketId == player1) {
       io.to(player2).emit("game_result", {result : "win"});
-      console.log(currentSocketId + " lost.")
+      console.log("player1: " + currentSocketId + " lost.");
+      console.log("player2: " + player2 + " win.");
     }
     else if (currentSocketId == player2) {
       io.to(player1).emit("game_result", {result : "win"});
+      console.log("player2: " + currentSocketId + " lost.")
+      console.log("player1: " + player1 + " win.");
     }
   }
 }
@@ -76,12 +82,13 @@ io.sockets.on('connection', function (socket) {
   iNumPlayerConnect++;
 
   // As soon as there are 2 players joined, emit an event that
-  // notify the client to start the game
+  // notify the clients to start the game
   if (iNumPlayerConnect == 2) {
     console.log('game_start');
     io.emit('game_start', {});
   }
 
+  // listening on button_click event
   socket.on('button_click', function(data) {
     var iButtonClicked = data.button_clicked;
     var iScore = data.score
