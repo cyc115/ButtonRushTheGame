@@ -46,7 +46,7 @@ var checkButtons = function(iButtonClicked, socket, iScore) {
 
   if (bValidClick) {
     // if the click is valid, inform the opponent about the new score
-    socket.emit("score_update", {score : iScore});
+    socket.emit("score_update", {score : iScore, button_update : iButtonClicked});
     console.log("valid click");
   }
   else {
