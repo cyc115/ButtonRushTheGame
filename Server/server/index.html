@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    var data = {"button_clicked" : 0, score : "100", }
+    socket.emit('button_click', data);
+  </script>
+</html>
