@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function(req, res){
-  res.sendFile('/Users/Gc/Desktop/ButtonRushTheGame/Server/server/index.html');
+  res.sendFile('./index.html');
 });
 
 http.listen(3000, function(){
@@ -100,7 +100,3 @@ io.sockets.on('connection', function (socket) {
     iNumPlayerConnect--;
   });
 });
-
-
-
-

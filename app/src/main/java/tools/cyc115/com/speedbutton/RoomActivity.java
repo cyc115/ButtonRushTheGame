@@ -108,7 +108,7 @@ public class RoomActivity extends AppCompatActivity {
 
         buttonImg.setImageDrawable(crossfader);
         crossfader.setCrossFadeEnabled(true);
-        crossfader.startTransition(3000);
+        crossfader.startTransition(1000);
     }
 
     /**

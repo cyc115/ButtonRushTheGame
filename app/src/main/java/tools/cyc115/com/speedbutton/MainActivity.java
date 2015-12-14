@@ -113,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         RoomActivity_
                 .intent(MainActivity.this).extra(USERIDExtra, App.currentUser )
                 .start();
-
     }
 
     //TODO extract this to a service.
