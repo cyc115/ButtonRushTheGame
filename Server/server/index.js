@@ -5,7 +5,8 @@ var io = require('socket.io')(http);
 app.get('/buttonRush', function(req, res){
   res.sendFile( __dirname + '/index.html');
 });
-var port = 3000;
+var port = 3030;
+
 http.listen(port, function(){
   console.log('listening on port' + port);
 });
@@ -103,7 +104,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('disconnect', function(socket){
-    console.log('client: ' + socket.id.toString() + ' left.');
+//    console.log('client: ' + socket.id.toString() + ' left.');
     iNumPlayerConnect--;
   });
 
