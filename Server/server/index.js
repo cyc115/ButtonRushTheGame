@@ -95,6 +95,13 @@ io.sockets.on('connection', function (socket) {
     checkButtons(iButtonClicked, socket, iScore);
   });
 
+  //send server's time stamp to the client
+  socket.on('server_timestamp', function(data){
+    io.emit('server_timestamp', {
+      time : new Date().getTime()
+    })
+  });
+
   socket.on('disconnect', function(socket){
     console.log('client: ' + socket.id.toString() + ' left.');
     iNumPlayerConnect--;
