@@ -96,7 +96,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   //send server's time stamp to the client
-  socket.on('server_timestamp', function(data){
+  socket.on('get_ts', function(data){
     io.emit('server_timestamp', {
       time : new Date().getTime()
     })

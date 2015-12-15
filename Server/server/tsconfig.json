@@ -22,7 +22,10 @@
     "compileOnSave": true,
     "buildOnSave": false,
     "files": [
-        "test.ts"
+        "test.ts",
+        "typings/node/node.d.ts",
+        "typings/socket.io-client/socket.io-client.d.ts",
+        "typings/socket.io/socket.io.d.ts"
     ],
     "atom": {
         "rewriteTsconfig": true
