@@ -2,12 +2,12 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
-  res.sendFile('./index.html');
+app.get('/buttonRush', function(req, res){
+  res.sendFile( __dirname + '/index.html');
 });
-
-http.listen(3000, function(){
-  console.log('listening on *:3000');
+var port = 3000;
+http.listen(port, function(){
+  console.log('listening on port' + port);
 });
 
 // Constants
@@ -99,4 +99,5 @@ io.sockets.on('connection', function (socket) {
     console.log('client: ' + socket.id.toString() + ' left.');
     iNumPlayerConnect--;
   });
+
 });
